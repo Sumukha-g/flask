@@ -7,7 +7,7 @@ mysql_config = {
     'host': '127.0.0.1',
     'user': 'root',
     'password': 'Sumukha123',
-    'database': 'portfolio'
+    'database': 'project'
 }
 def get_mysql_connection():
     return mysql.connector.connect(**mysql_config)
@@ -213,6 +213,7 @@ def add_transaction():
         symbol = transaction_details['symbol']
         date = transaction_details['transaction_date']
         transaction_type = transaction_details['transaction_type']
+        print(type(date),symbol)
         quantity = float(transaction_details['quantity'])
         rate = float(transaction_details['rate'])
         if transaction_type == 'Sell':
@@ -224,34 +225,6 @@ def add_transaction():
         connection.commit()
 
     return render_template('add_transaction.html', companies=companies)
-
-@app.route('/add_watchlist.html', methods=['GET', 'POST'])
-def add_watchlist():
-    if "user" not in session:
-        return render_template('alert.html')
-    # Query for companies (for drop down menu) excluding those which are already in watchlist
-    connection = get_mysql_connection()
-    cursor = connection.cursor()
-    query_companies = '''SELECT symbol from company_profile
-where symbol not in
-(select symbol from watchlist
-where username = %s);
-'''
-    user = [session['user']]
-    cursor.execute(query_companies, user)
-    companies = cursor.fetchall()
-
-    if request.method == 'POST':
-        watchlist_details = request.form
-        symbol = watchlist_details['symbol']
-        query = '''insert into watchlist(username, symbol) values
-(%s, %s)'''
-        values = [session['user'], symbol]
-        cursor.execute(query, values)
-        connection.commit()
-
-    return render_template('add_watchlist.html', companies=companies)
-
 @app.route('/stockprice.html')
 def stockprice(company='all'):
     if "user" not in session:
@@ -331,24 +304,6 @@ order by(symbol);
     rv = cursor.fetchall()
     return render_template('companyprofile.html', values=rv)
 
-
-
-
-@app.route('/watchlist.html')
-def watchlist():
-    if 'user' not in session:
-        return render_template('alert.html')
-    connection = get_mysql_connection()
-    cursor = connection.cursor()
-    query_watchlist = '''select symbol, LTP, PC, round((LTP-PC), 2) AS CH, round(((LTP-PC)/PC)*100, 2) AS CH_percent from watchlist
-natural join company_price
-where username = %s
-order by (symbol);
-'''
-    cursor.execute(query_watchlist, [session['user']])
-    watchlist = cursor.fetchall()
-
-    return render_template('watchlist.html', user=session['user'], watchlist=watchlist)
 
 @app.route('/holdings.html')
 def holdings():

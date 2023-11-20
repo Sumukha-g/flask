@@ -50,8 +50,6 @@
         hr {
             border: 1px solid #ddd;
         }
-
-        /* Add additional styling as needed */
     </style>
    <style>
         body {
@@ -89,7 +87,6 @@
             border: 1px solid #ddd;
         }
 
-        /* Add additional styling as needed */
     </style>
 </head>
 
@@ -107,7 +104,6 @@
         <button onclick="window.location.href='fundamental.html'">Fundamental Report</button>
         <button onclick="window.location.href='technical.html'">Technical Signals</button>
         <button onclick="window.location.href='holdings.html'">Holdings</button>
-        <button onclick="window.location.href='watchlist.html'">My Watchlist</button>
         <button class="logout-button" onclick="window.location.href='{{ url_for('logout') }}'">Logout</button>
         {% if is_admin %}
             <!-- Display the button only if the user is an admin -->
@@ -147,36 +143,7 @@
     <center>
         <div id="myDivT" style="width:1000px; height:500px;"></div>
     </center>
-
-    
-    <br><h2 style="color:rgb(252, 209, 19); font-size:x-large ; text-align: center;">Your Watchlist:
-    </h2>
-
-    <table class="table table-sm">
-        <thead>
-            <tr>
-                <th scope="col">Symbol</th>
-                <th scope="col">LTP</th>
-                <th scope="col">PC</th>
-                <th scope="col">CH</th>
-                <th scope="col">CH %</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for items in watchlist %}
-            <tr>
-                <td> {{items[0]}} </td>
-                <td> {{items[1]}} </td>
-                <td> {{items[2]}} </td>
-                <td> {{items[3]}} </td>
-                <td> {{items[4]}} </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <br>
-    <button onclick="window.location.href='add_watchlist.html'" style="justify-content: space-between;">Add to Watchlist +</button>
-    <br> <br>
+ <br>
     <hr/>
     <marquee onmouseover="this.stop();" onmouseout="this.start();"><h3
             style="color:rgb(18, 236, 164); font-size:xx-large ;">Suggestions:</h3></marquee>
@@ -212,6 +179,7 @@
         </tbody>
     </table>
     <br>
+    <hr/>
     
        <center> <h2 style="color:rgb(252, 209, 19); font-size:x-large ;">
             Companies having good earning per share:
@@ -235,6 +203,7 @@
             {% endfor %}
         </tbody>
     </table>
+    <hr/>
    
         <center><h2 style="color:rgb(252, 209, 19); font-size:x-large ; "> <br>Companies which are considered cheap by price per
             earning ratio:
@@ -259,7 +228,7 @@
         </tbody>
     </table>
     <br>
-   
+    <hr/>
         <center><h2 style="color:rgb(252, 209, 19); font-size:x-large ;"><br>Companies which are technically strong right now:
         </h2></center>
    <br>
