@@ -107,9 +107,10 @@
         <button onclick="window.location.href='holdings.html'">Holdings</button>
         <button onclick="window.location.href='watchlist.html'">My Watchlist</button>
         <button class="logout-button" onclick="window.location.href='{{ url_for('logout') }}'">Logout</button>
+        
         {% if is_admin %}
             <!-- Display the button only if the user is an admin -->
-            <button onclick="window.location.href='add_element'">Add Company</button>
+            <button class="logout-button" onclick="window.location.href='{{ url_for('admin_privilages') }}'">Logout</button>
         {% endif %}
     </nav>
     <h1 style="color: rgb(50, 241, 75); text-align: center;">Welcome {{user}}! </h1>

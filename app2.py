@@ -366,10 +366,43 @@ where username = %s
     holdings = cursor.fetchall()
 
     return render_template('holdings.html', user=session['user'], holdings=holdings)
+@app.route('/delete_user', methods=['GET'])
+def remove_user_form():
+    connection = get_mysql_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT username FROM user_profile")
+    users = cursor.fetchall()
+    connection.close()
+    return render_template('remove_user.html', users=users)
+
+@app.route('/delete_user', methods=['POST'])
+def delete_user():
+    user_to_delete = request.form['user_select']
+    print(user_to_delete)
+    connection = get_mysql_connection()
+    cursor = connection.cursor()
+    
+    # Implement user deletion logic here
+    cursor.execute("DELETE FROM user_profile WHERE username = %s", (user_to_delete,))
+    
+    connection.commit()
+    connection.close()
+
+    return redirect(url_for('portfolio'))
+
+    user_id_to_delete = int(request.form['user_select'])
+
+    # Implement user deletion logic here
+    # You may want to remove the user from the 'users' list
+
+    return redirect(url_for('portfolio2.html'))
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
     session.pop('user', None)
     return redirect(url_for('index'))
+@app.route('/adminp')
+def admin_privilages():
+    return render_template('admin_privilages.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
