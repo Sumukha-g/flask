@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            animation: gradientAnimation 10s infinite alternate;
+        }
+
+        h1 {
+            color: #008080;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #008080;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-color: #ffcccc;
+            }
+            50% {
+                background-color: #ccffcc;
+            }
+            100% {
+                background-color: #ccccff;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="/static/stocks1.png" alt="Stocks Image">
+    <h1>Portfolio Management System</h1>
+    <p>Login <a href="{{ url_for('login') }}">here</a> to go to the login page.</p>
+    <p>Sign up <a href="{{ url_for('signup') }}">here</a> to go to the signup page.</p>
+    <marquee><h1>😎 SUMUKHA FOR YOU NKN 😎</h1></marquee>
+</body>
+</html>

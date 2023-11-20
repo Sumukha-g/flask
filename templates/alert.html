@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login First</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .login-container {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px;
+        text-align: center;
+    }
+
+    .login-container h2 {
+        color: red;
+        margin-bottom: 10px;
+    }
+    .styled-button {
+        padding: 10px 15px;
+        background-color: #3498db; /* Button color */
+        color: #fff; /* Text color */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+    .login-container button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .login-container button:hover {
+        background-color: #45a049;
+    }
+
+    .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+</style>
+
+<body>
+    <div class="login-container">
+        <h2 class="error-message">Please Login First!</h2>
+        <button class="styled-button" onclick="window.location.href='/'">Go back</button>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Company Price</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        .login-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .login-container button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .login-container button:hover {
+            background-color: #45a049;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+        <h1>Add Company Price and Profile</h1>
+        <form action="{{ url_for('add_element') }}" method="post">
+            <label for="symbol">Symbol:</label>
+            <input type="text" id="symbol" name="symbol" required>
+    
+            <label for="LTP">Last Trading Price:</label>
+            <input type="number" id="LTP" name="LTP" required>
+    
+            <label for="PC">Previous Closing Price:</label>
+            <input type="number" id="PC" name="PC" required>
+    
+            <label for="company_name">Company Name:</label>
+            <input type="text" id="company_name" name="company_name" required>
+    
+            <label for="sector">Sector:</label>
+            <input type="text" id="sector" name="sector" required>
+    
+            <label for="market_cap">Market Cap:</label>
+            <input type="number" id="market_cap" name="market_cap" required>
+    
+            <label for="paidup_capital">Paid-up Capital:</label>
+            <input type="number" id="paidup_capital" name="paidup_capital" required>
+    
+            <button type="submit">Add Company Price and Profile</button>
+        </form>
+    </div>
+</body>
+</html>
