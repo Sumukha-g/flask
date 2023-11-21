@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Add your head content here -->
+</head>
+
+<body>
+    <header>
+        <!-- Include your navigation bar here -->
+    </header>
+
+    <main>
+        <div>
+            <!-- Delete Company form -->
+            <form action="{{ url_for('delete_element') }}" method="post">
+                <label for="company_select">Select company to delete:</label>
+                <select name="company_select" id="company_select">
+                    {% for company in companies %}
+                        <option value="{{ company[0] }}">{{ company[1] }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit">Delete Company</button>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>

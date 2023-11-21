@@ -107,15 +107,17 @@
         <button class="logout-button" onclick="window.location.href='{{ url_for('logout') }}'">Logout</button>
         {% if is_admin %}
             <!-- Display the button only if the user is an admin -->
-            <button onclick="window.location.href='add_element'">Add Company</button>
+            <button class="logout-button" onclick="window.location.href='{{ url_for('adminp') }}'">admin privilages</button>
         {% endif %}
     </nav>
     <h1 style="color: rgb(50, 241, 75); text-align: center;">Welcome {{user}}! </h1>
+    {% if not is_admin %}
     <br><h2 style="color:rgb(252, 209, 19); font-size:x-large ; text-align: center;">Your Current Holdings:
     </h2>
     
     <br>
     <div class="table-responsive justify-content-center float-center">
+        
         <table class="table table-sm">
             <thead>
                 <tr>
@@ -138,11 +140,13 @@
                 {% endfor %}
             </tbody>
         </table>
+        
     </div>
     <button onclick="window.location.href='add_transaction.html'">Add transaction +</button>
     <center>
         <div id="myDivT" style="width:1000px; height:500px;"></div>
     </center>
+    {% endif %}
  <br>
     <hr/>
     <marquee onmouseover="this.stop();" onmouseout="this.start();"><h3

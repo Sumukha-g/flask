@@ -7,7 +7,7 @@ mysql_config = {
     'host': '127.0.0.1',
     'user': 'root',
     'password': 'Sumukha123',
-    'database': 'project'
+    'database': 'proj'
 }
 def get_mysql_connection():
     return mysql.connector.connect(**mysql_config)
@@ -46,7 +46,6 @@ def login():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    print("oknaan")
     if request.method == 'POST':
         # Get form data
         username = request.form.get('username')
@@ -97,6 +96,29 @@ def add_element():
         return redirect(url_for('index'))
 
     return render_template('add_element.html')
+@app.route('/delete_element', methods=['GET', 'POST'])
+def delete_element():
+    if request.method == 'GET':
+        connection = get_mysql_connection()
+        cursor = connection.cursor()
+        cursor.execute("SELECT symbol, company_name FROM company_profile")
+        companies = cursor.fetchall()
+        connection.close()
+        return render_template('delete_element.html', companies=companies)
+
+    elif request.method == 'POST':
+        company_symbol_to_delete = request.form['company_select']
+        connection = get_mysql_connection()
+        cursor = connection.cursor()
+
+        # Implement company deletion logic here
+        cursor.execute("DELETE FROM company_profile WHERE symbol = %s", (company_symbol_to_delete,))
+        # You may also want to delete related records in other tables
+        
+        connection.commit()
+        connection.close()
+
+        return redirect(url_for('portfolio')) 
 
 @app.route('/portfolio.html')
 def portfolio():
@@ -115,15 +137,6 @@ def portfolio():
     connection = get_mysql_connection()
     cursor = connection.cursor()
 
-
-    # Query for watchlist
-    query_watchlist = '''select symbol, LTP, PC, round((LTP-PC), 2) AS CH, round(((LTP-PC)/PC)*100, 2) AS CH_percent from watchlist
-natural join company_price
-where username = %s
-order by (symbol)
-'''
-    cursor.execute(query_watchlist, user)
-    watchlist = cursor.fetchall()
 
     # Query for stock suggestion
     query_suggestions = """
@@ -180,8 +193,8 @@ group by C.sector;
     if "user" not in session:
         return render_template('alert.html')
     if is_admin():
-        return render_template('portfolio2.html', is_admin=is_admin, holdings=holdings, user=user[0], suggestions=suggestions, eps=eps, pe=pe, technical=technical, watchlist=watchlist, piechart=piechart_dict)
-    return render_template('portfolio2.html', holdings=holdings, user=user[0], suggestions=suggestions, eps=eps, pe=pe, technical=technical, watchlist=watchlist, piechart=piechart_dict)
+        return render_template('portfolio2.html', is_admin=is_admin, holdings=holdings, user=user[0], suggestions=suggestions, eps=eps, pe=pe, technical=technical, piechart=piechart_dict)
+    return render_template('portfolio2.html', holdings=holdings, user=user[0], suggestions=suggestions, eps=eps, pe=pe, technical=technical, piechart=piechart_dict)
 
 
 def toPercentage(sectors_total):
@@ -321,6 +334,33 @@ where username = %s
     holdings = cursor.fetchall()
 
     return render_template('holdings.html', user=session['user'], holdings=holdings)
+
+@app.route('/remove_user', methods=['GET','POST'])
+def remove_user_form():
+    if request.method == 'GET':
+        connection = get_mysql_connection()
+        cursor = connection.cursor()
+        cursor.execute("SELECT username FROM user_profile")
+        users = cursor.fetchall()
+        connection.close()
+        return render_template('remove_user.html', users=users)
+    if request.method == 'POST':
+        user_id_to_delete =request.form['user_select']
+        connection = get_mysql_connection()
+        cursor = connection.cursor()
+        
+        # Implement user deletion logic here
+        cursor.execute("DELETE FROM user_profile WHERE username = %s", (user_id_to_delete,))
+        
+        connection.commit()
+        connection.close()
+
+        return redirect(url_for('portfolio'))
+@app.route('/adminp', methods=['GET'])
+def adminp():
+    if "user" not in session:
+        return render_template('alert.html')
+    return render_template('adminp.html')
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
     session.pop('user', None)
