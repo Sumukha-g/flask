@@ -56,7 +56,13 @@
 <body>
 
 <div class="signup-container">
+    <h2>
+        {% if is_admin %}
+    Enter the details
+    </h2>
+    {% else %}
     <h2>Sign Up</h2>
+    {% endif %}
     <form action="{{ url_for('signup') }}" method="post">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>

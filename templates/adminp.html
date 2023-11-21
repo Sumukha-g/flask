@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Privileges</title>
-    <!-- Include your common styles here -->
 <style>
 body {
     font-family: Arial, sans-serif;
@@ -58,22 +57,23 @@ button:hover {
         <h1>Admin Privileges</h1>
 
         <div>
-            <!-- Add Company button -->
             <form action="{{ url_for('add_element') }}" method="get">
                 <button type="submit">Add Company</button>
             </form>
 
         </div>
-
         <div>
-            <!-- Add Company button -->
             <form action="{{ url_for('delete_element') }}" method="get">
                 <button type="submit">delete Company</button>
             </form>
 
         </div>
         <div>
-            <!-- Remove User button -->
+            <form action="{{ url_for('signup',is_admin=1) }}" method="get">
+                <button type="submit">Add User</button>
+            </form>
+        </div>
+        <div>
             <form action="{{ url_for('remove_user_form') }}" method="get">
                 <button type="submit">Remove User</button>
             </form>

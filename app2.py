@@ -79,7 +79,7 @@ def signup():
             cursor.close()
             connection.close()
 
-    return render_template('signup.html')
+    return render_template('signup.html',is_admin=is_admincheck())
 
 
 @app.route('/add_element', methods=['GET', 'POST'])

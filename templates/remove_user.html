@@ -69,7 +69,9 @@
                 <label for="user_select">Select user to remove:</label>
                 <select name="user_select" id="user_select">
                     {% for user in users %}
-                        <option value="{{ user[0] }}">{{ user[0] }}</option>
+                        {% if user[0] != 'admin' %}
+                            <option value="{{ user[0] }}">{{ user[0] }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             
