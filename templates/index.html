@@ -2,62 +2,79 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Stock Management</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-            animation: gradientAnimation 10s infinite alternate;
+            background: linear-gradient(to bottom right, #db6034, #2ecc71);
+            color: #fff;
         }
 
-        h1 {
-            color: #008080;
+        .button-container {
+            display: flex;
+            justify-content: center;
             margin-top: 20px;
+
         }
 
-        p {
-            font-size: 16px;
-            margin-bottom: 20px;
+        .logout-button {
+            background-color: #ffd700;
+            color: #000;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 60px;
+            margin-left: 60px;
         }
 
-        a {
-            text-decoration: none;
-            color: #008080;
-            font-weight: bold;
-        }
-
-        a:hover {
-            text-decoration: underline;
+        .logout-button:hover {
+            background-color: #000;
+            color: #ffd700;
         }
 
         img {
-            width: 100%;
-            max-width: 400px;
+            max-width: 100%;
+            height: auto;
             margin-top: 20px;
-        }
-
-        @keyframes gradientAnimation {
-            0% {
-                background-color: #ffcccc;
-            }
-            50% {
-                background-color: #ccffcc;
-            }
-            100% {
-                background-color: #ccccff;
-            }
         }
     </style>
 </head>
 <body>
-    <img src="/static/stocks1.png" alt="Stocks Image">
-    <h1>Portfolio Management System</h1>
-    <p>Login <a href="{{ url_for('login') }}">here</a> to go to the login page.</p>
-    <p>Sign up <a href="{{ url_for('signup') }}">here</a> to go to the signup page.</p>
-    <marquee><h1>😎 SUMUKHA FOR YOU NKN 😎</h1></marquee>
+
+    <header class="container mt-3">
+        <h1>Stock Management system</h1>
+    </header>
+    <div class="container mt-3">
+        <p>
+            Stock management is a critical aspect of any business, ensuring the efficient handling of inventory to meet customer demand. It involves monitoring stock levels, ordering new items, and keeping track of product movement. Effective stock management minimizes the risk of overstocking or running out of essential products, optimizing the balance between supply and demand. Utilizing modern tools and technologies, businesses can streamline the stock management process, enhance accuracy, and reduce costs. This strategic approach not only improves customer satisfaction by ensuring product availability but also contributes to overall business profitability.
+        </p>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="/static/1.png" alt="Image 1">
+            </div>
+            <div class="col-md-6">
+                <img src="/static/2.png" alt="Image 2">
+            </div>
+        </div>
+    </div>
+    <div class="button-container">
+        <div>
+            <button class="logout-button" onclick="window.location.href='{{ url_for('login') }}'">Sign Up</button>
+        </div>
+        <div>
+            <button class="logout-button" onclick="window.location.href='{{ url_for('signup') }}'">Login</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js (for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
