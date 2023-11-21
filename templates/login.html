@@ -61,7 +61,11 @@
 <body>
 
 <div class="login-container">
-    <h2>Login</h2>
+    <h2 class="error-message">
+        {% if is_admin %}
+    this login is for admin only!
+        {% endif %}
+    </h2>
     <form action="{{ url_for('login') }}" method="post">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>

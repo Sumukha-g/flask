@@ -12,7 +12,7 @@ mysql_config = {
 def get_mysql_connection():
     return mysql.connector.connect(**mysql_config)
 
-def is_admin():
+def is_admincheck():
     return 'user' in session and session['user'] == 'admin'
 @app.route('/')
 def index():
@@ -21,28 +21,35 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    is_admin_param = request.args.get('is_admin', 0)  # Default to 0 if not present
+
     if request.method == 'POST':
+        
         username = request.form.get("username", None)
         user_password = request.form.get("password", None)
 
         connection = get_mysql_connection()
         cursor = connection.cursor()
 
-
         # Query the database for the user's information
         query = "SELECT username, user_password FROM user_profile"
         cursor.execute(query)
         user_data = cursor.fetchall()
-        if (username,user_password) in user_data:
-            session["user"]=username
-            return redirect(url_for("portfolio"))
+
+        if (username, user_password) in user_data:
+            session["user"] = username
+            # Assuming you have a way to determine if the user is an admin
+            is_admin =is_admincheck()
+            return redirect(url_for("portfolio", is_admin=is_admin))
 
         else:
             # User does not exist or incorrect password, show an error message
             error_message = "Incorrect username or password. Please try again."
-            return render_template("login.html", error_message=error_message)
+            return render_template("login.html", error_message=error_message, is_admin=is_admin_param)
 
-    return render_template("login.html")
+    return render_template("login.html", is_admin=is_admin_param)
+
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -77,7 +84,7 @@ def signup():
 
 @app.route('/add_element', methods=['GET', 'POST'])
 def add_element():
-    if not is_admin():
+    if not is_admincheck():
         return redirect(url_for('index'))
 
     if request.method == 'POST':
@@ -192,8 +199,8 @@ group by C.sector;
     piechart_dict[0]['hole'] = 0.4
     if "user" not in session:
         return render_template('alert.html')
-    if is_admin():
-        return render_template('portfolio2.html', is_admin=is_admin, holdings=holdings, user=user[0], suggestions=suggestions, eps=eps, pe=pe, technical=technical, piechart=piechart_dict)
+    if is_admincheck():
+        return render_template('portfolio2.html', is_admin=1, holdings=holdings, user=user[0], suggestions=suggestions, eps=eps, pe=pe, technical=technical, piechart=piechart_dict)
     return render_template('portfolio2.html', holdings=holdings, user=user[0], suggestions=suggestions, eps=eps, pe=pe, technical=technical, piechart=piechart_dict)
 
 

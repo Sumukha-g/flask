@@ -65,10 +65,14 @@
     </div>
     <div class="button-container">
         <div>
-            <button class="logout-button" onclick="window.location.href='{{ url_for('login') }}'">Sign Up</button>
+            <button class="logout-button" onclick="window.location.href='{{ url_for('login') }}'">Login</button>
         </div>
         <div>
-            <button class="logout-button" onclick="window.location.href='{{ url_for('signup') }}'">Login</button>
+            <button class="logout-button" onclick="window.location.href='{{ url_for('signup') }}'">Sign Up</button>
+        </div>
+        <div>
+            <button class="logout-button" onclick="window.location.href='{{ url_for('login', is_admin=1) }}'">admin</button>
+
         </div>
     </div>
 
