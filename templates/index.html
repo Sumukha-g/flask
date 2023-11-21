@@ -7,7 +7,16 @@
     <title>Stock Management</title>
     <style>
         body {
-            background: linear-gradient(to bottom right, #db6034, #2ecc71);
+            background: linear-gradient(to bottom right, #e8f1ec, #151716);
+            color: #fff;
+            padding-top: 56px; /* Adjusted for fixed navbar */
+        }
+
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-brand {
             color: #fff;
         }
 
@@ -15,19 +24,18 @@
             display: flex;
             justify-content: center;
             margin-top: 20px;
-
         }
 
         .logout-button {
-            background-color: #ffd700;
+            background-color: wheat;
             color: #000;
             padding: 10px 15px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            margin-right: 60px;
-            margin-left: 60px;
+            margin-right: 10px;
+            margin-left: 10px;
         }
 
         .logout-button:hover {
@@ -39,41 +47,47 @@
             max-width: 100%;
             height: auto;
             margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
-    <header class="container mt-3">
-        <h1>Stock Management system</h1>
-    </header>
-    <div class="container mt-3">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">Stock Management System</a>
+    </nav>
+    <h1 style="color: #151716;font-style: italic;">WELCOME TO STOCK MANAGER</h1>
+    <div class="container">
         <p>
             Stock management is a critical aspect of any business, ensuring the efficient handling of inventory to meet customer demand. It involves monitoring stock levels, ordering new items, and keeping track of product movement. Effective stock management minimizes the risk of overstocking or running out of essential products, optimizing the balance between supply and demand. Utilizing modern tools and technologies, businesses can streamline the stock management process, enhance accuracy, and reduce costs. This strategic approach not only improves customer satisfaction by ensuring product availability but also contributes to overall business profitability.
         </p>
     </div>
 
-    <div class="container mt-3">
+    <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img src="/static/1.png" alt="Image 1">
+                <img src="https://www.thestatesman.com/wp-content/uploads/2022/08/iStock-900144946.jpg" alt="Image 1">
             </div>
             <div class="col-md-6">
-                <img src="/static/2.png" alt="Image 2">
+                <img src="https://www.cioandleader.com/sites/default/files/styles/article_image/public/Stock%20Market.jpg?itok=f72_1seh" alt="Image 2">
             </div>
         </div>
     </div>
-    <div class="button-container">
-        <div>
-            <button class="logout-button" onclick="window.location.href='{{ url_for('login') }}'">Login</button>
-        </div>
-        <div>
-            <button class="logout-button" onclick="window.location.href='{{ url_for('signup') }}'">Sign Up</button>
-        </div>
-        <div>
-            <button class="logout-button" onclick="window.location.href='{{ url_for('login', is_admin=1) }}'">admin</button>
 
-        </div>
+    <div class="button-container">
+        <button class="logout-button" onclick="window.location.href='{{ url_for('login') }}'">Sign Up</button>
+        <button class="logout-button" onclick="window.location.href='{{ url_for('signup') }}'">Login</button>
+        <button class="logout-button" onclick="window.location.href='{{ url_for('login', is_admin=1) }}'">Admin</button>
     </div>
 
     <!-- Bootstrap JS and Popper.js (for Bootstrap's JavaScript plugins) -->
