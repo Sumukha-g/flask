@@ -7,8 +7,9 @@ mysql_config = {
     'host': '127.0.0.1',
     'user': 'root',
     'password': 'Sumukha123',
-    'database': 'proj'
+    'database': 'projec'
 }
+
 def get_mysql_connection():
     return mysql.connector.connect(**mysql_config)
 

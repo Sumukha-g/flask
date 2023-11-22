@@ -1,15 +1,16 @@
-create database proj;
-use proj;
+create database projec;
+use projec;
+select * from user_profile;
 -- 
-drop table company_profile;
-drop table company_price;
-drop table fundamental_report;
-drop table technical_signals;
-drop table user_profile;
-drop table transaction_history;
+drop table if exists company_profile;
+drop table if exists company_price;
+drop table if exists fundamental_report;
+drop table if exists technical_signals;
+drop table if exists user_profile;
+drop table if exists transaction_history;
 
 show tables;
-desc company_profile;
+-- desc company_profile;
 
 create table company_profile
 (
@@ -98,79 +99,73 @@ insert into user_profile values
 ('gtm', 'tha075@gmail.com', 9860000012,'erewan123');
 
 insert into company_profile values
-('KBL', 'Kumari Bank', 'Bank', 1000000000, 21212121221),
-('NIL', 'Nepal Insurance Limited', 'Life Insurance', 123232332, 131321321),
-('LEC', 'Libery Energy', 'Hydropower', 63233232, 61321321),
-('ELEX', 'Nepal Electronics Bank', 'Bank', 32323233232, 323321321321),
-('NEPP', 'Nepal Power', 'Hydropower', 102323233232, 10323321321321),
-('LSL', 'Life Saver Limited', 'Life Insurance', 23233232, 21321321),
-('NBL', 'Nepal Bank Limited', 'Bank', 532323233232, 5323321321321),
-('HEX', 'Hotel Electronics', 'Hotels', 82323233232, 823321321321),
-('HIH', 'Hotel Itahari', 'Hotels', 12323233232, 123321321321),
-('BIH', 'Bank of Itahari', 'Bank', 62323233232, 623321321321);
+('SBI', 'STATE BANK OF INDIA', 'Bank', 1000000000, 21212121221),
+('LIC', 'LIFE INSURANCE CORPORATION', 'Life Insurance', 123232332, 131321321),
+('ADP', 'ADANI POWER', 'Hydropower', 63233232, 61321321),
+('KB', 'KARNATAKA BANK', 'Bank', 32323233232, 323321321321),
+('TP', 'TATA POWER', 'Hydropower', 102323233232, 10323321321321),
+('SHI', 'STAR HEALTH INSURANCE', 'Life Insurance', 23233232, 21321321),
+('CB', 'CANARA BANK', 'Bank', 532323233232, 5323321321321),
+('HEX', 'HOTEL ELECTRONICS', 'Hotels', 82323233232, 823321321321),
+('HI', 'HOTEL INDRAPRASTHA', 'Hotels', 12323233232, 123321321321),
+('BOM', 'BANK OF MYSORE', 'Bank', 62323233232, 623321321321);
 
 
 insert into company_price (symbol, LTP, PC) values
-('KBL', 500, 470),
-('NIL', 5800, 6000),
-('LEC', 400, 410),
-('ELEX', 1010, 1000),
-('NEPP', 500, 480),
-('LSL', 1000, 1040),
-('NBL', 600, 580.5),
+('SBI', 500, 470),
+('LIC', 5800, 6000),
+('ADP', 400, 410),
+('KB', 1010, 1000),
+('TP', 500, 480),
+('SHI', 1000, 1040),
+('CB', 600, 580.5),
 ('HEX', 1222.3, 1220),
-('HIH', 1500.5, 1499.4),
-('BIH', 788, 777);
+('HI', 1500.5, 1499.4),
+('BOM', 788, 777);
 
 insert into fundamental_report(symbol, report_as_of, EPS, ROE, book_value) values
-('KBL', '77/78_q3', 20.5, 11.97, 120),
-('KBL', '77/78_q2', 19.5, 10, 110),  
-('NIL', '77/78_q3', 205, 50, 300),
-('NIL', '77/78_q2', 211, 55, 310),
-('LEC', '77/78_q3', 8, 4, 90),
-('LEC', '77/78_q2', 7.5, 3.5, 88),
-('ELEX', '77/78_q3', 34, 15, 180),
-('ELEX', '77/78_q2', 31, 13, 178),
-('NEPP', '77/78_q3', 21, 12, 119),
-('NEPP', '77/78_q2', 20, 11, 118),
-('LSL', '77/78_q3', 30, 12, 170),
-('LSL', '77/78_q2', 35.4, 13, 180.5),
-('NBL', '77/78_q3', 22, 13, 120),
-('NBL', '77/78_q2', 21, 12, 117),
+('SBI', '77/78_q3', 20.5, 11.97, 120),
+('SBI', '77/78_q2', 19.5, 10, 110),  
+('LIC', '77/78_q3', 205, 50, 300),
+('LIC', '77/78_q2', 211, 55, 310),
+('ADP', '77/78_q3', 8, 4, 90),
+('ADP', '77/78_q2', 7.5, 3.5, 88),
+('KB', '77/78_q3', 34, 15, 180),
+('KB', '77/78_q2', 31, 13, 178),
+('TP', '77/78_q3', 21, 12, 119),
+('TP', '77/78_q2', 20, 11, 118),
+('SHI', '77/78_q3', 30, 12, 170),
+('SHI', '77/78_q2', 35.4, 13, 180.5),
+('CB', '77/78_q3', 22, 13, 120),
+('CB', '77/78_q2', 21, 12, 117),
 ('HEX', '77/78_q3', 50, 15, 200),
 ('HEX', '77/78_q2', 48, 14, 199),
-('HIH', '77/78_q3', 60, 20, 220),
-('HIH', '77/78_q2', 55, 18, 200),
-('BIH', '77/78_q3', 36, 20, 220),
-('BIH', '77/78_q2', 35, 21, 200);
+('HI', '77/78_q3', 60, 20, 220),
+('HI', '77/78_q2', 55, 18, 200),
+('BOM', '77/78_q3', 36, 20, 220),
+('BOM', '77/78_q2', 35, 21, 200);
 
 insert into technical_signals(symbol, RSI, volume, ADX, MACD) values 
-('KBL', 65.1, 451000, 33.3, 'bull'), 
-('NIL', 50.5, 100000, 40, 'bull'), 
-('LEC', 20, 12344, 15, 'bear'),
-('ELEX', 70, 1200000, 30, 'bull'),
-('NEPP', 45, 212000, 16.5, 'bull'),
-('LSL', 53.4, 15312, 25.29, 'bull'),
-('NBL', 66.41, 406121, 34.66, 'bull'),
+('SBI', 65.1, 451000, 33.3, 'bull'), 
+('LIC', 50.5, 100000, 40, 'bull'), 
+('ADP', 20, 12344, 15, 'bear'),
+('KB', 70, 1200000, 30, 'bull'),
+('TP', 45, 212000, 16.5, 'bull'),
+('SHI', 53.4, 15312, 25.29, 'bull'),
+('CB', 66.41, 406121, 34.66, 'bull'),
 ('HEX', 40.2, 34000, 40, 'side'),
-('HIH', 35, 120000, 30, 'side'),
-('BIH', 75, 335000, 44, 'bull');
+('HI', 35, 120000, 30, 'side'),
+('BOM', 75, 335000, 44, 'bull');
 
-
--- Updating LTP values in technical_signals
--- UPDATE technical_signals A
--- INNER JOIN company_price B ON A.symbol = B.symbol
--- SET A.LTP = B.LTP
--- WHERE A.symbol = B.symbol;
 
 insert into transaction_history(username, symbol, transaction_date, quantity, rate) values
-('rewan', 'HEX', '2021-07-01', 100, 1200),
-('rewan', 'HIH', '2021-07-02', 55, 1480),
-('rewan', 'HIH', '2021-07-06', -20, 1500),
-('suman', 'LEC', '2021-07-10', 10, 420),
-('suman', 'LEC', '2021-07-15', 10, 410),
-('rewan', 'BIH', '2021-07-20', 120, 785.5),
-('rewan', 'LSL', '2021-07-20', 55, 1001);
+('rewan', 'SBI', '2021-07-01', 100, 1200),
+('rewan', 'HI', '2021-07-02', 55, 1480),
+('rewan', 'HI', '2021-07-06', -20, 1500),
+('suman', 'LIC', '2021-07-10', 10, 420),
+('suman', 'LIC', '2021-07-15', 10, 410),
+('rewan', 'BOM', '2021-07-20', 120, 785.5),
+('rewan', 'KB', '2021-07-20', 55, 1001);
 
 -- Holdings
 Create view holdings_view as
@@ -192,7 +187,6 @@ INNER JOIN company_price C
 on F.symbol = C.symbol
 group by(Symbol);
 
-select * from  fundamental_averaged;
 
 -- Fundamental report of certain company without averaging
 select F.symbol, report_as_of, LTP, eps, roe, book_value, round(LTP/eps, 2) as pe_ratio
